@@ -182,11 +182,19 @@ def user_stats(df, city):
     if city != 'washington':
         earliest_birth = int(df['Birth Year'].min())
         most_recent_birth = int(df['Birth Year'].max())
-        common_birth = int(df['Birth Year'].mode())
+        most_common_birth = int(df['Birth Year'].mode())
         print('The oldest user was born in {}.\nThe youngest user was born in {}.\nThe most common birth year of users was {}.\n'.format(earliest_birth, most_recent_birth, common_birth))
     else:
+<<<<<<< HEAD
         print('User age: The variable birth year is not contained in the selected data set.')
 
+||||||| merged common ancestors
+        print('User age: The variable birth year is not contained in the selected data set.')
+
+=======
+        print('User age: Error. The variable birth year is not contained in the selected data set.')
+
+>>>>>>> refactoring
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
