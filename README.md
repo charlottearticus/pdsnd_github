@@ -11,7 +11,11 @@ Interactive python environment to explore bikeshare data from Washington, Chicag
 * allows user to filter by city, day and month
 
 ### Files used
-bikeshare.py
+* bikeshare.py
+* data files (not commited):
+    * chicago.csv
+    * new_york_city.csv
+    * washington.csv
 
 ### Credits
 Udacity
