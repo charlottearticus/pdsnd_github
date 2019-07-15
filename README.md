@@ -2,13 +2,13 @@
 2019-07-14
 
 ### Project Title
-Replace the Project Title
+Explore US Bikeshare Data
 
 ### Description
-Describe what your project is about and what it does
+Interactive environment to explore bikeshare data from Washington, Chicago and New York City
 
 ### Files used
-Include the files used
+bikeshare.py
 
 ### Credits
-Udacity 
+Udacity
