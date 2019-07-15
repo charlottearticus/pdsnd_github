@@ -181,7 +181,7 @@ def user_stats(df, city):
         most_common_birth = int(df['Birth Year'].mode())
         print('The oldest user was born in {}.\nThe youngest user was born in {}.\nThe most common birth year of users was {}.\n'.format(earliest_birth, most_recent_birth, common_birth))
     else:
-        print('User age: The variable birth year is not contained in the selected data set.')
+        print('User age: Error. The variable birth year is not contained in the selected data set.')
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -191,7 +191,7 @@ def main():
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
-        
+
         display_data(df)
         time_stats(df)
         station_stats(df)
