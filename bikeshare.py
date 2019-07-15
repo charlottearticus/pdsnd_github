@@ -17,23 +17,23 @@ def get_filters():
     """
     print('Hello! Let\'s explore some US bikeshare data!')
 
-    
+
     city = input('Which city would you like to see? Please type Chicago, Washington or New York City.\n ' ).lower()
-    while city not in CITY_DATA.keys(): 
+    while city not in CITY_DATA.keys():
         city = input('Oops! An error ocurred. Please choose either Chicago, Washington or New York City and check your input for typos.\n ').lower()
-    
-                     
+
+
     # get user input for month (all, january, february, ... , june)
-    month = input('Please select a month. You can also type "all" to see statistics for all monthes in the data set.\n ').lower()[0:3]               
-    while month not in ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'all']: 
+    month = input('Please select a month. You can also type "all" to see statistics for all monthes in the data set.\n ').lower()[0:3]
+    while month not in ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'all']:
         month = input('Oops! An error ocurred. Please choose a month from january to june or "all" if you do not want to filter by month and check your input for typos.\n ').lower()[0:3]
-    
+
 
     # get user input for day of week (all, monday, tuesday, ... sunday)
     day = input('What day are you interested in? Type mon, tue, wed, thu, fri, sat or sun for a specific day or "all" if you do not want to filter by day.\n ').lower()[0:3]
-    while day not in ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun', 'all']: 
+    while day not in ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun', 'all']:
         day = input('Oops! An error ocurred. Please choose a day of the week or "all" if you do not want to filter by day and check your input for typos.\n ').lower()[0:3]
-    
+
     print('-'*40)
     print('Great! You made the following choices: \n City: {} \n Month: {} \n Day: {}'. format(city.capitalize(), month, day))
     return city, month, day
@@ -73,9 +73,9 @@ def load_data(city, month, day):
 def display_data(df):
     """
     Gives user the option to display the filtered raw data.
-    Displays 5 rows at a time unless user chooses to proceed. 
+    Displays 5 rows at a time unless user chooses to proceed.
     """
-    
+
     raw_data_choice = input('\nWould you like to take a look at the raw data?\nType yes to see the first rows of your selected data set or no to proceed to explore some summarizing statistics.\n ').lower()
     i = 1
     while raw_data_choice == 'yes':
@@ -95,16 +95,16 @@ def time_stats(df):
     # display the most common month
     most_common_month = df['month'].mode()[0]
     print('The most common month is', most_common_month)
-    
+
     # display the most common day of week
     most_common_day = df['day'].mode()[0]
     print('The most common day of the week is', most_common_day)
-    
+
     # display the most common start hour
     df['hour'] = df['Start Time'].dt.hour
     most_common_hour = df['hour'].mode()[0]
     print('The most common start hour is', most_common_hour)
-   
+
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -119,17 +119,17 @@ def station_stats(df):
     # display most commonly used start station
     most_common_start = df['Start Station'].mode()[0]
     print('The most common Start Station is', most_common_start)
-    
+
     # display most commonly used end station
     most_common_end = df['End Station'].mode()[0]
     print('The most common End Station is', most_common_end)
-    
+
     # display most frequent combination of start station and end station trip
     df['Start End combination'] = df['Start Station'] + ' and ' + df['End Station']
     most_common_combi = df['Start End combination'].mode()[0]
     print('The most common Start End combination is', most_common_combi)
-    
-    
+
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -145,13 +145,13 @@ def trip_duration_stats(df):
     total_min, total_s = divmod(total_travel_time, 60)
     total_h, total_m = divmod(total_min, 60)
     print('Total travel time was {} hours, {} minutes and {} seconds.'.format(int(total_h), int(total_m), int(total_s)))
-          
+
     # display mean travel time
     mean_travel_time = df['Trip Duration'].mean()
     mean_min, mean_s = divmod(mean_travel_time, 60)
     mean_h, mean_m = divmod(mean_min, 60)
     print('Average travel time was {} hours, {} minutes and {} seconds.'.format(int(mean_h), int(mean_m), int(mean_s)))
-           
+
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -166,23 +166,23 @@ def user_stats(df, city):
     # Display counts of user types
     user_counts = df['User Type'].value_counts()
     print('Counts of user types:\n', user_counts, '\n')
-    
+
     # Display counts of gender
     if city != 'washington':
         gender_counts = df['Gender'].value_counts()
         print('Counts of user gender:\n', gender_counts, '\n')
     else:
         print('Gender counts: The variable gender is not contained in the selected data set.')
-    
+
     # Display earliest, most recent, and most common year of birth
     if city != 'washington':
         earliest_birth = int(df['Birth Year'].min())
         most_recent_birth = int(df['Birth Year'].max())
-        common_birth = int(df['Birth Year'].mode())
+        most_common_birth = int(df['Birth Year'].mode())
         print('The oldest user was born in {}.\nThe youngest user was born in {}.\nThe most common birth year of users was {}.\n'.format(earliest_birth, most_recent_birth, common_birth))
     else:
         print('User age: The variable birth year is not contained in the selected data set.')
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
